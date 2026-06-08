@@ -34,26 +34,56 @@ nav { display: flex; align-items: center; justify-content: space-between; paddin
 .sec-head h2 { font-family: var(--display); font-size: clamp(36px, 6vw, 60px); letter-spacing: 0.04em; }
 .sec-num { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); }
 
-/* GALLERY */
+/* GALLERY — horizontal scroll, natural width, fixed height */
 .gallery-wrap { padding: 0 36px; }
-.gallery { display: grid; grid-template-columns: repeat(12, 1fr); gap: 2px; }
-.g-item { position: relative; overflow: hidden; cursor: pointer; background: var(--bg3); }
-.g-item:nth-child(1) { grid-column: 1 / 8; height: 240px; }
-.g-item:nth-child(2) { grid-column: 8 / 13; height: 240px; }
-.g-item:nth-child(3) { grid-column: 1 / 5; height: 180px; }
-.g-item:nth-child(4) { grid-column: 5 / 13; height: 180px; }
-.g-extra { display: none; grid-column: span 4; height: 180px; }
-.g-extra.col6 { grid-column: span 6; }
+.gallery {
+  display: flex;
+  flex-direction: row;
+  gap: 2px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.gallery::-webkit-scrollbar { display: none; }
+.g-item {
+  position: relative;
+  flex-shrink: 0;
+  height: 320px;
+  overflow: hidden;
+  cursor: pointer;
+  background: var(--bg3);
+}
+.g-extra { display: none; }
 .gallery.expanded .g-extra { display: block; }
-.g-ph { width: 100%; height: 100%; background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; transition: transform 0.5s cubic-bezier(0.25,0,0,1); }
-.g-item:hover .g-ph { transform: scale(1.05); }
+.g-ph {
+  height: 100%;
+  width: auto;
+  min-width: 200px;
+  background-size: auto 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.5s cubic-bezier(0.25,0,0,1);
+}
+.g-img {
+  height: 100%;
+  width: auto;
+  display: block;
+  object-fit: none;
+  transition: transform 0.5s cubic-bezier(0.25,0,0,1);
+}
+.g-item:hover .g-img { transform: scale(1.03); }
 
 /* ── ADD YOUR PORTFOLIO PHOTOS HERE ── */
-.g-item:nth-child(1) .g-ph { background-color: #141414; background-image: url('photos/0bbf75b0-53d9-45d9-8b7e-328509afdab5.png'); }
-.g-item:nth-child(2) .g-ph { background-color: #0F1218; background-image: url('photos/1fbbc4d5-0eef-4651-928d-88bf04f920c1.png'); }
-.g-item:nth-child(3) .g-ph { background-color: #121210; background-image: url('photos/221aeca1-863c-4dec-aa5d-9d3842d1acf3.png'); }
-.g-item:nth-child(4) .g-ph { background-color: #0E1210; background-image: url('photos/4ab1f779-8cce-41b9-b66f-bdf5826e0475.png'); }
-.g-item:nth-child(5) .g-ph { background-color: #141210; background-image: url('photos/9a489f2e-679d-433d-802c-dd17c9afcb61.png'); }
+.g-item:nth-child(1) .g-ph { background-color: #141414; /* background-image: url('photos/photo1.jpg'); */ }
+.g-item:nth-child(2) .g-ph { background-color: #0F1218; /* background-image: url('photos/photo2.jpg'); */ }
+.g-item:nth-child(3) .g-ph { background-color: #121210; /* background-image: url('photos/photo3.jpg'); */ }
+.g-item:nth-child(4) .g-ph { background-color: #0E1210; /* background-image: url('photos/photo4.jpg'); */ }
+.g-item:nth-child(5) .g-ph { background-color: #141210; /* background-image: url('photos/photo5.jpg'); */ }
+.g-item:nth-child(6) .g-ph { background-color: #0E1418; /* background-image: url('photos/photo6.jpg'); */ }
+.g-item:nth-child(7) .g-ph { background-color: #121816; /* background-image: url('photos/photo7.jpg'); */ }
 
 .ph-svg { opacity: 0.1; color: #F0EEE9; }
 .more-row { display: flex; align-items: center; gap: 20px; padding: 18px 0 48px; }
@@ -90,12 +120,10 @@ nav { display: flex; align-items: center; justify-content: space-between; paddin
 /* ── ADD YOUR STAGING PHOTOS HERE ── */
 .pair-1 .slider-after  { background-image: url('photos/after1.png');  background-color: #141C24; }
 .pair-1 .slider-before { background-image: url('photos/before1.png'); background-color: #201C18; }
-.pair-2 .slider-after  { background-image: url('photos/after2.png');  background-color: #121A14; }
-.pair-2 .slider-before { background-image: url('photos/before2.webp'); background-color: #1C1814; }
-.pair-3 .slider-after  { background-image: url('photos/after3.png');  background-color: #121A14;  }
-.pair-3 .slider-before { background-image: url('photos/before3.webp'); background-color: #1C1814; }
-.pair-4 .slider-after  { background-image: url('photos/after4.png');  background-color: #121A14;  }
-.pair-4 .slider-before { background-image: url('photos/before4.webp'); background-color: #1C1814; }
+.pair-2 .slider-after  { background-color: #121A14; /* background-image: url('photos/after2.png');  */ }
+.pair-2 .slider-before { background-color: #1C1814; /* background-image: url('photos/before2.png'); */ }
+.pair-3 .slider-after  { background-color: #0E1420; /* background-image: url('photos/after3.png');  */ }
+.pair-3 .slider-before { background-color: #181420; /* background-image: url('photos/before3.png'); */ }
 
 .slider-line { position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; background: var(--accent); transform: translateX(-50%); pointer-events: none; z-index: 10; }
 .slider-handle { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 36px; height: 36px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; z-index: 11; box-shadow: 0 0 0 4px rgba(200,255,0,0.15); pointer-events: none; }
@@ -158,13 +186,11 @@ footer { margin-top: 40px; padding: 20px 36px; border-top: 0.5px solid var(--rul
 
 <div class="gallery-wrap">
   <div class="gallery" id="gallery">
-    <div class="g-item"><div class="g-ph"><svg width="52" height="52" viewBox="0 0 52 52" fill="none" class="ph-svg"><rect x="4" y="12" width="44" height="30" rx="2" stroke="currentColor" stroke-width="1.5"/><circle cx="26" cy="27" r="8" stroke="currentColor" stroke-width="1.5"/><circle cx="26" cy="27" r="3" fill="currentColor" opacity="0.35"/><rect x="9" y="17" width="7" height="5" rx="1" stroke="currentColor" stroke-width="1"/></svg></div></div>
-    <div class="g-item"><div class="g-ph"></div></div>
-    <div class="g-item"><div class="g-ph"></div></div>
-    <div class="g-item"><div class="g-ph"></div></div>
-    <div class="g-item g-extra"><div class="g-ph"></div></div>
-    <div class="g-item g-extra col6"><div class="g-ph"></div></div>
-    <div class="g-item g-extra col6"><div class="g-ph"></div></div>
+    <div class="g-item"><img class="g-img" src="photos/0bbf75b0-53d9-45d9-8b7e-328509afdab5.png" alt=""></div>
+    <div class="g-item"><img class="g-img" src="photos/1fbbc4d5-0eef-4651-928d-88bf04f920c1.png" alt=""></div>
+    <div class="g-item"><img class="g-img" src="photos/221aeca1-863c-4dec-aa5d-9d3842d1acf3.png" alt=""></div>
+    <div class="g-item"><img class="g-img" src="photos/4ab1f779-8cce-41b9-b66f-bdf5826e0475.png" alt=""></div>
+    <div class="g-item g-extra"><img class="g-img" src="photos/9a489f2e-679d-433d-802c-dd17c9afcb61.png" alt=""></div>
   </div>
   <div class="more-row">
     <div class="more-line"></div>
@@ -222,20 +248,7 @@ footer { margin-top: 40px; padding: 20px 36px; border-top: 0.5px solid var(--rul
       </div>
       <div class="ba-caption">Dining Room · Silver Lake</div>
     </div>
-    
-<div class="ba-module">
-  <div class="slider-wrap pair-4" data-slider>
-    <div class="slider-after"></div>
-    <div class="slider-before"></div>
-    <div class="slider-line"></div>
-    <div class="slider-handle"><div class="handle-arrows"><svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M5 3L1 7l4 4" stroke="#0A0A0A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M9 3l4 4-4 4" stroke="#0A0A0A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
-    <div class="sl-badge before">Before</div>
-    <div class="sl-badge after">After</div>
-    <div class="drag-hint">Drag to compare</div>
-  </div>
-  <div class="ba-caption">你的标题 · 地点</div>
-</div>
-    
+
   </div>
 
   <div class="cta">
