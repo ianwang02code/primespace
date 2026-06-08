@@ -50,10 +50,15 @@ nav {
 .g-extra { display: none; grid-column: span 4; height: 180px; }
 .g-extra.col6 { grid-column: span 6; }
 .gallery.expanded .g-extra { display: block; }
-.g-ph { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; transition: transform 0.5s cubic-bezier(0.25,0,0,1); background-size: cover; background-position: center; }
+.g-ph {
+  width: 100%; height: 100%;
+  background-size: cover; background-position: center;
+  display: flex; align-items: center; justify-content: center;
+  transition: transform 0.5s cubic-bezier(0.25,0,0,1);
+}
 .g-item:hover .g-ph { transform: scale(1.05); }
 
-/* ── REPLACE THESE WITH YOUR PORTFOLIO PHOTOS ── */
+/* ── REPLACE WITH YOUR PORTFOLIO PHOTOS ── */
 .g-item:nth-child(1) .g-ph { background-color: #141414; /* background-image: url('photos/portfolio/photo1.jpg'); */ }
 .g-item:nth-child(2) .g-ph { background-color: #0F1218; /* background-image: url('photos/portfolio/photo2.jpg'); */ }
 .g-item:nth-child(3) .g-ph { background-color: #121210; /* background-image: url('photos/portfolio/photo3.jpg'); */ }
@@ -70,33 +75,52 @@ nav {
 .more-btn svg { transition: transform 0.3s; }
 .more-btn.open svg { transform: rotate(180deg); }
 
-/* BEFORE / AFTER SLIDER */
+/* ── BEFORE / AFTER GRID ── */
 .ba-section { border-top: 0.5px solid var(--rule); }
-.ba-pairs { padding: 0 36px 24px; display: flex; flex-direction: column; gap: 24px; }
 
+.ba-grid {
+  padding: 0 36px 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 12px;
+}
+
+.ba-module { display: flex; flex-direction: column; gap: 8px; }
+
+/* 16:9 ratio wrapper */
 .slider-wrap {
-  position: relative; width: 100%; height: 300px;
-  overflow: hidden; cursor: col-resize; user-select: none; background: var(--bg3);
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  cursor: col-resize;
+  user-select: none;
+  background: var(--bg3);
 }
-.slider-before, .slider-after { position: absolute; inset: 0; }
-.slider-after { clip-path: inset(0 50% 0 0); }
-.sl-ph { width: 100%; height: 100%; background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; }
 
-/* ── REPLACE THESE WITH YOUR STAGING PHOTOS ── */
-.pair-1 .slider-before .sl-ph {
-  background-color: #201C18;
-  background-image: url('photos/before 1.png');
+.slider-before,
+.slider-after {
+  position: absolute;
+  inset: 0;
 }
-.pair-1 .slider-after .sl-ph {
-  background-color: #141C24;
-  background-image: url('photos/after 1.png');
+.slider-after { clip-path: inset(0 50% 0 0); }
+
+.sl-ph {
+  width: 100%; height: 100%;
+  background-size: cover;
+  background-position: center;
 }
-/* Add more pairs below as needed:
-.pair-2 .slider-before .sl-ph { background-image: url('photos/before2.jpg'); }
-.pair-2 .slider-after  .sl-ph { background-image: url('photos/after2.jpg');  }
-*/
-.pair-2 .slider-before .sl-ph { background-color: #1C1814; }
-.pair-2 .slider-after  .sl-ph { background-color: #121A14; }
+
+/* ── REPLACE WITH YOUR STAGING PHOTOS ── */
+/* Pair 1 */
+.pair-1 .slider-before .sl-ph { background-image: url('photos/before1.png'); background-color: #201C18; }
+.pair-1 .slider-after  .sl-ph { background-image: url('photos/after1.png');  background-color: #141C24; }
+/* Pair 2 — add your images */
+.pair-2 .slider-before .sl-ph { background-color: #1C1814; /* background-image: url('photos/before2.jpg'); */ }
+.pair-2 .slider-after  .sl-ph { background-color: #121A14; /* background-image: url('photos/after2.jpg');  */ }
+/* Pair 3 — add your images */
+.pair-3 .slider-before .sl-ph { background-color: #181420; /* background-image: url('photos/before3.jpg'); */ }
+.pair-3 .slider-after  .sl-ph { background-color: #0E1420; /* background-image: url('photos/after3.jpg');  */ }
 
 .slider-line {
   position: absolute; top: 0; bottom: 0; left: 50%;
@@ -106,32 +130,35 @@ nav {
 .slider-handle {
   position: absolute; top: 50%; left: 50%;
   transform: translate(-50%, -50%);
-  width: 40px; height: 40px; border-radius: 50%;
+  width: 36px; height: 36px; border-radius: 50%;
   background: var(--accent);
   display: flex; align-items: center; justify-content: center;
   z-index: 11; box-shadow: 0 0 0 4px rgba(200,255,0,0.15);
   pointer-events: none;
 }
-.handle-arrows { display: flex; align-items: center; gap: 3px; }
+.handle-arrows { display: flex; align-items: center; gap: 2px; }
+
 .sl-badge {
-  position: absolute; top: 14px;
+  position: absolute; top: 12px;
   font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
   padding: 4px 10px; font-weight: 500; z-index: 5; pointer-events: none;
 }
-.sl-badge.before { left: 14px; background: rgba(255,255,255,0.06); color: rgba(240,238,233,0.45); border: 0.5px solid rgba(255,255,255,0.1); }
-.sl-badge.after  { right: 14px; background: var(--accent); color: #0A0A0A; }
-.slider-caption { padding: 12px 0 0; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.sl-badge.before { left: 12px; background: rgba(255,255,255,0.06); color: rgba(240,238,233,0.5); border: 0.5px solid rgba(255,255,255,0.12); }
+.sl-badge.after  { right: 12px; background: var(--accent); color: #0A0A0A; }
+
 .drag-hint {
-  position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%);
-  font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase;
-  color: rgba(240,238,233,0.3); pointer-events: none; z-index: 5; transition: opacity 0.4s;
+  position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%);
+  font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: rgba(240,238,233,0.28); pointer-events: none; z-index: 5;
+  white-space: nowrap; transition: opacity 0.4s;
 }
 .slider-wrap.dragged .drag-hint { opacity: 0; }
 
-.row-divider { display: flex; align-items: center; gap: 12px; }
-.row-divider-line { flex: 1; height: 0.5px; background: var(--rule); }
-.row-divider-label { font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); }
+.ba-caption {
+  font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);
+}
 
+/* CTA */
 .cta { margin: 8px 36px 0; padding: 36px; background: var(--bg2); display: flex; align-items: center; justify-content: space-between; gap: 24px; border: 0.5px solid var(--rule); }
 .cta-left h3 { font-family: var(--display); font-size: 40px; letter-spacing: 0.04em; line-height: 1; margin-bottom: 6px; }
 .cta-left h3 span { color: var(--accent); }
@@ -143,6 +170,18 @@ footer { margin-top: 40px; padding: 20px 36px; border-top: 0.5px solid var(--rul
 .f-logo { font-family: var(--display); font-size: 16px; letter-spacing: 0.1em; }
 .f-logo span { color: var(--accent); }
 .f-copy { font-size: 10px; color: var(--muted); }
+
+@media (max-width: 600px) {
+  nav { padding: 16px 20px; }
+  .nav-links { gap: 16px; }
+  .hero { padding: 48px 20px 40px; flex-direction: column; gap: 24px; }
+  .hero-sub { text-align: left; max-width: 100%; }
+  .sec-head { padding: 32px 20px 16px; }
+  .gallery-wrap { padding: 0 20px; }
+  .ba-grid { padding: 0 20px 24px; grid-template-columns: 1fr; }
+  .cta { margin: 8px 20px 0; padding: 24px; flex-direction: column; align-items: flex-start; }
+  footer { padding: 20px; }
+}
 </style>
 </head>
 <body>
@@ -164,6 +203,7 @@ footer { margin-top: 40px; padding: 20px 36px; border-top: 0.5px solid var(--rul
   </div>
 </div>
 
+<!-- PORTFOLIO -->
 <div class="sec-head" id="portfolio">
   <h2>PORTFOLIO</h2>
   <span class="sec-num">01 / Photography</span>
@@ -189,54 +229,72 @@ footer { margin-top: 40px; padding: 20px 36px; border-top: 0.5px solid var(--rul
   </div>
 </div>
 
+<!-- VIRTUAL STAGING -->
 <div class="ba-section" id="staging">
   <div class="sec-head">
     <h2>VIRTUAL STAGING</h2>
     <span class="sec-num">02 / Before & After</span>
   </div>
 
-  <div class="ba-pairs">
-    <div>
-      <div class="slider-wrap pair-1" id="sl1">
+  <div class="ba-grid">
+
+    <!-- MODULE 1 — before1.png / after1.png -->
+    <div class="ba-module">
+      <div class="slider-wrap pair-1" data-slider>
         <div class="slider-before"><div class="sl-ph"></div></div>
-        <div class="slider-after" id="sl1-after"><div class="sl-ph"></div></div>
-        <div class="slider-line" id="sl1-line"></div>
-        <div class="slider-handle" id="sl1-handle">
+        <div class="slider-after"><div class="sl-ph"></div></div>
+        <div class="slider-line"></div>
+        <div class="slider-handle">
           <div class="handle-arrows">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 3L1 7l4 4" stroke="#0A0A0A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 3l4 4-4 4" stroke="#0A0A0A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M5 3L1 7l4 4" stroke="#0A0A0A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M9 3l4 4-4 4" stroke="#0A0A0A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
         </div>
         <div class="sl-badge before">Before</div>
         <div class="sl-badge after">After</div>
         <div class="drag-hint">Drag to compare</div>
       </div>
-      <div class="slider-caption">Living Room · Virtual Staging</div>
+      <div class="ba-caption">Living Room · Venice Modern</div>
     </div>
 
-    <div class="row-divider">
-      <div class="row-divider-line"></div>
-      <div class="row-divider-label">Property 02</div>
-      <div class="row-divider-line"></div>
-    </div>
-
-    <div>
-      <div class="slider-wrap pair-2" id="sl2">
+    <!-- MODULE 2 -->
+    <div class="ba-module">
+      <div class="slider-wrap pair-2" data-slider>
         <div class="slider-before"><div class="sl-ph"></div></div>
-        <div class="slider-after" id="sl2-after"><div class="sl-ph"></div></div>
-        <div class="slider-line" id="sl2-line"></div>
-        <div class="slider-handle" id="sl2-handle">
+        <div class="slider-after"><div class="sl-ph"></div></div>
+        <div class="slider-line"></div>
+        <div class="slider-handle">
           <div class="handle-arrows">
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M5 3L1 7l4 4" stroke="#0A0A0A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9 3l4 4-4 4" stroke="#0A0A0A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M5 3L1 7l4 4" stroke="#0A0A0A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M9 3l4 4-4 4" stroke="#0A0A0A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </div>
         </div>
         <div class="sl-badge before">Before</div>
         <div class="sl-badge after">After</div>
         <div class="drag-hint">Drag to compare</div>
       </div>
-      <div class="slider-caption">Bedroom · Virtual Staging</div>
+      <div class="ba-caption">Master Bedroom · Bel Air</div>
     </div>
+
+    <!-- MODULE 3 -->
+    <div class="ba-module">
+      <div class="slider-wrap pair-3" data-slider>
+        <div class="slider-before"><div class="sl-ph"></div></div>
+        <div class="slider-after"><div class="sl-ph"></div></div>
+        <div class="slider-line"></div>
+        <div class="slider-handle">
+          <div class="handle-arrows">
+            <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M5 3L1 7l4 4" stroke="#0A0A0A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M9 3l4 4-4 4" stroke="#0A0A0A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </div>
+        <div class="sl-badge before">Before</div>
+        <div class="sl-badge after">After</div>
+        <div class="drag-hint">Drag to compare</div>
+      </div>
+      <div class="ba-caption">Dining Room · Silver Lake</div>
+    </div>
+
   </div>
 
   <div class="cta">
@@ -262,32 +320,27 @@ function toggleMore() {
   btn.childNodes[0].textContent = open ? 'Show Less ' : 'More Work ';
 }
 
-function initSlider(wrapId, afterId, lineId, handleId) {
-  var wrap = document.getElementById(wrapId);
-  var after = document.getElementById(afterId);
-  var line = document.getElementById(lineId);
-  var handle = document.getElementById(handleId);
+document.querySelectorAll('[data-slider]').forEach(function(wrap) {
+  var after = wrap.querySelector('.slider-after');
+  var line  = wrap.querySelector('.slider-line');
+  var handle = wrap.querySelector('.slider-handle');
   var dragging = false;
 
   function setPos(x) {
     var rect = wrap.getBoundingClientRect();
-    var pct = (x - rect.left) / rect.width;
-    pct = Math.max(0.02, Math.min(0.98, pct));
+    var pct = Math.max(0.02, Math.min(0.98, (x - rect.left) / rect.width));
     after.style.clipPath = 'inset(0 ' + ((1 - pct) * 100).toFixed(2) + '% 0 0)';
-    line.style.left = (pct * 100).toFixed(2) + '%';
+    line.style.left   = (pct * 100).toFixed(2) + '%';
     handle.style.left = (pct * 100).toFixed(2) + '%';
   }
 
-  wrap.addEventListener('mousedown', function(e) { dragging = true; wrap.classList.add('dragged'); setPos(e.clientX); });
+  wrap.addEventListener('mousedown',  function(e) { dragging = true; wrap.classList.add('dragged'); setPos(e.clientX); });
   window.addEventListener('mousemove', function(e) { if (dragging) setPos(e.clientX); });
-  window.addEventListener('mouseup', function() { dragging = false; });
-  wrap.addEventListener('touchstart', function(e) { dragging = true; wrap.classList.add('dragged'); setPos(e.touches[0].clientX); }, { passive: true });
+  window.addEventListener('mouseup',   function()  { dragging = false; });
+  wrap.addEventListener('touchstart',  function(e) { dragging = true; wrap.classList.add('dragged'); setPos(e.touches[0].clientX); }, { passive: true });
   window.addEventListener('touchmove', function(e) { if (dragging) setPos(e.touches[0].clientX); }, { passive: true });
-  window.addEventListener('touchend', function() { dragging = false; });
-}
-
-initSlider('sl1', 'sl1-after', 'sl1-line', 'sl1-handle');
-initSlider('sl2', 'sl2-after', 'sl2-line', 'sl2-handle');
+  window.addEventListener('touchend',  function()  { dragging = false; });
+});
 </script>
 </body>
 </html>
