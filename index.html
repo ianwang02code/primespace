@@ -65,35 +65,45 @@ nav { display: flex; align-items: center; justify-content: space-between; paddin
 .more-btn svg { transition: transform 0.3s; }
 .more-btn.open svg { transform: rotate(180deg); }
 
-/* BEFORE / AFTER */
+/* BEFORE / AFTER SLIDER
+   Logic: after is the base (always full width, bottom layer)
+          before sits on top and clips from the right as you drag left */
 .ba-section { border-top: 0.5px solid var(--rule); }
 .ba-grid { padding: 0 36px 24px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
 .ba-module { display: flex; flex-direction: column; gap: 8px; }
 
 .slider-wrap { position: relative; width: 100%; aspect-ratio: 16/9; overflow: hidden; cursor: col-resize; user-select: none; background: var(--bg3); }
-.slider-before, .slider-after { position: absolute; inset: 0; }
-.slider-after { clip-path: inset(0 50% 0 0); }
 
-/* the image sits on the wrapper div itself, not a child */
-.slider-before, .slider-after { background-size: cover; background-position: center; }
+/* AFTER: base layer, always full width */
+.slider-after {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  z-index: 1;
+}
 
-/* ── ADD YOUR STAGING PHOTOS HERE ──
-   Format: url('photos/FILENAME.png')
-   Files must be in the /photos/ folder in your repo root */
-.pair-1 .slider-before { background-image: url('photos/before1.png'); }
-.pair-1 .slider-after  { background-image: url('photos/after1.png'); }
-.pair-2 .slider-before { background-color: #1C1814; /* background-image: url('photos/before2.png'); */ }
+/* BEFORE: top layer, clipped from the right */
+.slider-before {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  z-index: 2;
+  clip-path: inset(0 50% 0 0);
+}
+
+/* ── ADD YOUR STAGING PHOTOS HERE ── */
+.pair-1 .slider-after  { background-image: url('photos/after1.png');  background-color: #141C24; }
+.pair-1 .slider-before { background-image: url('photos/before1.png'); background-color: #201C18; }
 .pair-2 .slider-after  { background-color: #121A14; /* background-image: url('photos/after2.png');  */ }
-.pair-3 .slider-before { background-color: #181420; /* background-image: url('photos/before3.png'); */ }
+.pair-2 .slider-before { background-color: #1C1814; /* background-image: url('photos/before2.png'); */ }
 .pair-3 .slider-after  { background-color: #0E1420; /* background-image: url('photos/after3.png');  */ }
+.pair-3 .slider-before { background-color: #181420; /* background-image: url('photos/before3.png'); */ }
 
 .slider-line { position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; background: var(--accent); transform: translateX(-50%); pointer-events: none; z-index: 10; }
 .slider-handle { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 36px; height: 36px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; z-index: 11; box-shadow: 0 0 0 4px rgba(200,255,0,0.15); pointer-events: none; }
 .handle-arrows { display: flex; align-items: center; gap: 2px; }
-.sl-badge { position: absolute; top: 12px; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; padding: 4px 10px; font-weight: 500; z-index: 5; pointer-events: none; }
+.sl-badge { position: absolute; top: 12px; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; padding: 4px 10px; font-weight: 500; z-index: 12; pointer-events: none; }
 .sl-badge.before { left: 12px; background: rgba(255,255,255,0.06); color: rgba(240,238,233,0.5); border: 0.5px solid rgba(255,255,255,0.12); }
 .sl-badge.after  { right: 12px; background: var(--accent); color: #0A0A0A; }
-.drag-hint { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(240,238,233,0.28); pointer-events: none; z-index: 5; white-space: nowrap; transition: opacity 0.4s; }
+.drag-hint { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(240,238,233,0.28); pointer-events: none; z-index: 12; white-space: nowrap; transition: opacity 0.4s; }
 .slider-wrap.dragged .drag-hint { opacity: 0; }
 .ba-caption { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
 
@@ -176,8 +186,8 @@ footer { margin-top: 40px; padding: 20px 36px; border-top: 0.5px solid var(--rul
 
     <div class="ba-module">
       <div class="slider-wrap pair-1" data-slider>
-        <div class="slider-before"></div>
         <div class="slider-after"></div>
+        <div class="slider-before"></div>
         <div class="slider-line"></div>
         <div class="slider-handle"><div class="handle-arrows"><svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M5 3L1 7l4 4" stroke="#0A0A0A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M9 3l4 4-4 4" stroke="#0A0A0A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
         <div class="sl-badge before">Before</div>
@@ -189,8 +199,8 @@ footer { margin-top: 40px; padding: 20px 36px; border-top: 0.5px solid var(--rul
 
     <div class="ba-module">
       <div class="slider-wrap pair-2" data-slider>
-        <div class="slider-before"></div>
         <div class="slider-after"></div>
+        <div class="slider-before"></div>
         <div class="slider-line"></div>
         <div class="slider-handle"><div class="handle-arrows"><svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M5 3L1 7l4 4" stroke="#0A0A0A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M9 3l4 4-4 4" stroke="#0A0A0A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
         <div class="sl-badge before">Before</div>
@@ -202,8 +212,8 @@ footer { margin-top: 40px; padding: 20px 36px; border-top: 0.5px solid var(--rul
 
     <div class="ba-module">
       <div class="slider-wrap pair-3" data-slider>
-        <div class="slider-before"></div>
         <div class="slider-after"></div>
+        <div class="slider-before"></div>
         <div class="slider-line"></div>
         <div class="slider-handle"><div class="handle-arrows"><svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M5 3L1 7l4 4" stroke="#0A0A0A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M9 3l4 4-4 4" stroke="#0A0A0A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
         <div class="sl-badge before">Before</div>
@@ -239,15 +249,16 @@ function toggleMore() {
 }
 
 document.querySelectorAll('[data-slider]').forEach(function(wrap) {
-  var after = wrap.querySelector('.slider-after');
-  var line  = wrap.querySelector('.slider-line');
+  var before = wrap.querySelector('.slider-before');
+  var line   = wrap.querySelector('.slider-line');
   var handle = wrap.querySelector('.slider-handle');
   var dragging = false;
 
   function setPos(x) {
     var rect = wrap.getBoundingClientRect();
     var pct = Math.max(0.02, Math.min(0.98, (x - rect.left) / rect.width));
-    after.style.clipPath = 'inset(0 ' + ((1 - pct) * 100).toFixed(2) + '% 0 0)';
+    /* clip before from the right, revealing after underneath */
+    before.style.clipPath = 'inset(0 ' + ((1 - pct) * 100).toFixed(2) + '% 0 0)';
     line.style.left   = (pct * 100).toFixed(2) + '%';
     handle.style.left = (pct * 100).toFixed(2) + '%';
   }
