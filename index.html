@@ -16,12 +16,7 @@
 }
 body { background: var(--bg); color: var(--white); font-family: var(--body); font-weight: 300; -webkit-font-smoothing: antialiased; }
 
-nav {
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 18px 36px; border-bottom: 0.5px solid var(--rule);
-  background: rgba(10,10,10,0.92); backdrop-filter: blur(16px);
-  position: sticky; top: 0; z-index: 100;
-}
+nav { display: flex; align-items: center; justify-content: space-between; padding: 18px 36px; border-bottom: 0.5px solid var(--rule); background: rgba(10,10,10,0.92); backdrop-filter: blur(16px); position: sticky; top: 0; z-index: 100; }
 .logo { font-family: var(--display); font-size: 20px; letter-spacing: 0.12em; }
 .logo span { color: var(--accent); }
 .nav-links { display: flex; gap: 28px; list-style: none; align-items: center; }
@@ -50,22 +45,17 @@ nav {
 .g-extra { display: none; grid-column: span 4; height: 180px; }
 .g-extra.col6 { grid-column: span 6; }
 .gallery.expanded .g-extra { display: block; }
-.g-ph {
-  width: 100%; height: 100%;
-  background-size: cover; background-position: center;
-  display: flex; align-items: center; justify-content: center;
-  transition: transform 0.5s cubic-bezier(0.25,0,0,1);
-}
+.g-ph { width: 100%; height: 100%; background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; transition: transform 0.5s cubic-bezier(0.25,0,0,1); }
 .g-item:hover .g-ph { transform: scale(1.05); }
 
-/* ── REPLACE WITH YOUR PORTFOLIO PHOTOS ── */
-.g-item:nth-child(1) .g-ph { background-color: #141414; /* background-image: url('photos/portfolio/photo1.jpg'); */ }
-.g-item:nth-child(2) .g-ph { background-color: #0F1218; /* background-image: url('photos/portfolio/photo2.jpg'); */ }
-.g-item:nth-child(3) .g-ph { background-color: #121210; /* background-image: url('photos/portfolio/photo3.jpg'); */ }
-.g-item:nth-child(4) .g-ph { background-color: #0E1210; /* background-image: url('photos/portfolio/photo4.jpg'); */ }
-.g-item:nth-child(5) .g-ph { background-color: #141210; /* background-image: url('photos/portfolio/photo5.jpg'); */ }
-.g-item:nth-child(6) .g-ph { background-color: #0E1418; /* background-image: url('photos/portfolio/photo6.jpg'); */ }
-.g-item:nth-child(7) .g-ph { background-color: #121816; /* background-image: url('photos/portfolio/photo7.jpg'); */ }
+/* ── ADD YOUR PORTFOLIO PHOTOS HERE ── */
+.g-item:nth-child(1) .g-ph { background-color: #141414; /* background-image: url('photos/photo1.jpg'); */ }
+.g-item:nth-child(2) .g-ph { background-color: #0F1218; /* background-image: url('photos/photo2.jpg'); */ }
+.g-item:nth-child(3) .g-ph { background-color: #121210; /* background-image: url('photos/photo3.jpg'); */ }
+.g-item:nth-child(4) .g-ph { background-color: #0E1210; /* background-image: url('photos/photo4.jpg'); */ }
+.g-item:nth-child(5) .g-ph { background-color: #141210; /* background-image: url('photos/photo5.jpg'); */ }
+.g-item:nth-child(6) .g-ph { background-color: #0E1418; /* background-image: url('photos/photo6.jpg'); */ }
+.g-item:nth-child(7) .g-ph { background-color: #121816; /* background-image: url('photos/photo7.jpg'); */ }
 
 .ph-svg { opacity: 0.1; color: #F0EEE9; }
 .more-row { display: flex; align-items: center; gap: 20px; padding: 18px 0 48px; }
@@ -75,90 +65,38 @@ nav {
 .more-btn svg { transition: transform 0.3s; }
 .more-btn.open svg { transform: rotate(180deg); }
 
-/* ── BEFORE / AFTER GRID ── */
+/* BEFORE / AFTER */
 .ba-section { border-top: 0.5px solid var(--rule); }
-
-.ba-grid {
-  padding: 0 36px 24px;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-  gap: 12px;
-}
-
+.ba-grid { padding: 0 36px 24px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
 .ba-module { display: flex; flex-direction: column; gap: 8px; }
 
-/* 16:9 ratio wrapper */
-.slider-wrap {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  overflow: hidden;
-  cursor: col-resize;
-  user-select: none;
-  background: var(--bg3);
-}
-
-.slider-before,
-.slider-after {
-  position: absolute;
-  inset: 0;
-}
+.slider-wrap { position: relative; width: 100%; aspect-ratio: 16/9; overflow: hidden; cursor: col-resize; user-select: none; background: var(--bg3); }
+.slider-before, .slider-after { position: absolute; inset: 0; }
 .slider-after { clip-path: inset(0 50% 0 0); }
 
-.sl-ph {
-  width: 100%; height: 100%;
-  background-size: cover;
-  background-position: center;
-}
+/* the image sits on the wrapper div itself, not a child */
+.slider-before, .slider-after { background-size: cover; background-position: center; }
 
-/* ── REPLACE WITH YOUR STAGING PHOTOS ── */
-/* Pair 1 */
-.pair-1 .slider-before .sl-ph { background-image: url('photos/before1.png'); background-color: #201C18; }
-.pair-1 .slider-after  .sl-ph { background-image: url('photos/after1.png');  background-color: #141C24; }
-/* Pair 2 — add your images */
-.pair-2 .slider-before .sl-ph { background-color: #1C1814; /* background-image: url('photos/before2.jpg'); */ }
-.pair-2 .slider-after  .sl-ph { background-color: #121A14; /* background-image: url('photos/after2.jpg');  */ }
-/* Pair 3 — add your images */
-.pair-3 .slider-before .sl-ph { background-color: #181420; /* background-image: url('photos/before3.jpg'); */ }
-.pair-3 .slider-after  .sl-ph { background-color: #0E1420; /* background-image: url('photos/after3.jpg');  */ }
+/* ── ADD YOUR STAGING PHOTOS HERE ──
+   Format: url('photos/FILENAME.png')
+   Files must be in the /photos/ folder in your repo root */
+.pair-1 .slider-before { background-image: url('photos/before1.png'); background-color: #201C18; }
+.pair-1 .slider-after  { background-image: url('photos/after1.png');  background-color: #141C24; }
+.pair-2 .slider-before { background-color: #1C1814; /* background-image: url('photos/before2.png'); */ }
+.pair-2 .slider-after  { background-color: #121A14; /* background-image: url('photos/after2.png');  */ }
+.pair-3 .slider-before { background-color: #181420; /* background-image: url('photos/before3.png'); */ }
+.pair-3 .slider-after  { background-color: #0E1420; /* background-image: url('photos/after3.png');  */ }
 
-.slider-line {
-  position: absolute; top: 0; bottom: 0; left: 50%;
-  width: 2px; background: var(--accent);
-  transform: translateX(-50%); pointer-events: none; z-index: 10;
-}
-.slider-handle {
-  position: absolute; top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  width: 36px; height: 36px; border-radius: 50%;
-  background: var(--accent);
-  display: flex; align-items: center; justify-content: center;
-  z-index: 11; box-shadow: 0 0 0 4px rgba(200,255,0,0.15);
-  pointer-events: none;
-}
+.slider-line { position: absolute; top: 0; bottom: 0; left: 50%; width: 2px; background: var(--accent); transform: translateX(-50%); pointer-events: none; z-index: 10; }
+.slider-handle { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 36px; height: 36px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; z-index: 11; box-shadow: 0 0 0 4px rgba(200,255,0,0.15); pointer-events: none; }
 .handle-arrows { display: flex; align-items: center; gap: 2px; }
-
-.sl-badge {
-  position: absolute; top: 12px;
-  font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
-  padding: 4px 10px; font-weight: 500; z-index: 5; pointer-events: none;
-}
+.sl-badge { position: absolute; top: 12px; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; padding: 4px 10px; font-weight: 500; z-index: 5; pointer-events: none; }
 .sl-badge.before { left: 12px; background: rgba(255,255,255,0.06); color: rgba(240,238,233,0.5); border: 0.5px solid rgba(255,255,255,0.12); }
 .sl-badge.after  { right: 12px; background: var(--accent); color: #0A0A0A; }
-
-.drag-hint {
-  position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%);
-  font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase;
-  color: rgba(240,238,233,0.28); pointer-events: none; z-index: 5;
-  white-space: nowrap; transition: opacity 0.4s;
-}
+.drag-hint { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(240,238,233,0.28); pointer-events: none; z-index: 5; white-space: nowrap; transition: opacity 0.4s; }
 .slider-wrap.dragged .drag-hint { opacity: 0; }
+.ba-caption { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
 
-.ba-caption {
-  font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);
-}
-
-/* CTA */
 .cta { margin: 8px 36px 0; padding: 36px; background: var(--bg2); display: flex; align-items: center; justify-content: space-between; gap: 24px; border: 0.5px solid var(--rule); }
 .cta-left h3 { font-family: var(--display); font-size: 40px; letter-spacing: 0.04em; line-height: 1; margin-bottom: 6px; }
 .cta-left h3 span { color: var(--accent); }
@@ -203,7 +141,6 @@ footer { margin-top: 40px; padding: 20px 36px; border-top: 0.5px solid var(--rul
   </div>
 </div>
 
-<!-- PORTFOLIO -->
 <div class="sec-head" id="portfolio">
   <h2>PORTFOLIO</h2>
   <span class="sec-num">01 / Photography</span>
@@ -212,12 +149,12 @@ footer { margin-top: 40px; padding: 20px 36px; border-top: 0.5px solid var(--rul
 <div class="gallery-wrap">
   <div class="gallery" id="gallery">
     <div class="g-item"><div class="g-ph"><svg width="52" height="52" viewBox="0 0 52 52" fill="none" class="ph-svg"><rect x="4" y="12" width="44" height="30" rx="2" stroke="currentColor" stroke-width="1.5"/><circle cx="26" cy="27" r="8" stroke="currentColor" stroke-width="1.5"/><circle cx="26" cy="27" r="3" fill="currentColor" opacity="0.35"/><rect x="9" y="17" width="7" height="5" rx="1" stroke="currentColor" stroke-width="1"/></svg></div></div>
-    <div class="g-item"><div class="g-ph"><svg width="44" height="44" viewBox="0 0 52 52" fill="none" class="ph-svg"><rect x="4" y="12" width="44" height="30" rx="2" stroke="currentColor" stroke-width="1.5"/><circle cx="26" cy="27" r="8" stroke="currentColor" stroke-width="1.5"/></svg></div></div>
-    <div class="g-item"><div class="g-ph"><svg width="44" height="44" viewBox="0 0 52 52" fill="none" class="ph-svg"><rect x="4" y="12" width="44" height="30" rx="2" stroke="currentColor" stroke-width="1.5"/><circle cx="26" cy="27" r="8" stroke="currentColor" stroke-width="1.5"/></svg></div></div>
-    <div class="g-item"><div class="g-ph"><svg width="44" height="44" viewBox="0 0 52 52" fill="none" class="ph-svg"><rect x="4" y="12" width="44" height="30" rx="2" stroke="currentColor" stroke-width="1.5"/><circle cx="26" cy="27" r="8" stroke="currentColor" stroke-width="1.5"/></svg></div></div>
-    <div class="g-item g-extra"><div class="g-ph"><svg width="44" height="44" viewBox="0 0 52 52" fill="none" class="ph-svg"><rect x="4" y="12" width="44" height="30" rx="2" stroke="currentColor" stroke-width="1.5"/><circle cx="26" cy="27" r="8" stroke="currentColor" stroke-width="1.5"/></svg></div></div>
-    <div class="g-item g-extra col6"><div class="g-ph"><svg width="44" height="44" viewBox="0 0 52 52" fill="none" class="ph-svg"><rect x="4" y="12" width="44" height="30" rx="2" stroke="currentColor" stroke-width="1.5"/><circle cx="26" cy="27" r="8" stroke="currentColor" stroke-width="1.5"/></svg></div></div>
-    <div class="g-item g-extra col6"><div class="g-ph"><svg width="44" height="44" viewBox="0 0 52 52" fill="none" class="ph-svg"><rect x="4" y="12" width="44" height="30" rx="2" stroke="currentColor" stroke-width="1.5"/><circle cx="26" cy="27" r="8" stroke="currentColor" stroke-width="1.5"/></svg></div></div>
+    <div class="g-item"><div class="g-ph"></div></div>
+    <div class="g-item"><div class="g-ph"></div></div>
+    <div class="g-item"><div class="g-ph"></div></div>
+    <div class="g-item g-extra"><div class="g-ph"></div></div>
+    <div class="g-item g-extra col6"><div class="g-ph"></div></div>
+    <div class="g-item g-extra col6"><div class="g-ph"></div></div>
   </div>
   <div class="more-row">
     <div class="more-line"></div>
@@ -229,7 +166,6 @@ footer { margin-top: 40px; padding: 20px 36px; border-top: 0.5px solid var(--rul
   </div>
 </div>
 
-<!-- VIRTUAL STAGING -->
 <div class="ba-section" id="staging">
   <div class="sec-head">
     <h2>VIRTUAL STAGING</h2>
@@ -238,18 +174,12 @@ footer { margin-top: 40px; padding: 20px 36px; border-top: 0.5px solid var(--rul
 
   <div class="ba-grid">
 
-    <!-- MODULE 1 — before1.png / after1.png -->
     <div class="ba-module">
       <div class="slider-wrap pair-1" data-slider>
-        <div class="slider-before"><div class="sl-ph"></div></div>
-        <div class="slider-after"><div class="sl-ph"></div></div>
+        <div class="slider-before"></div>
+        <div class="slider-after"></div>
         <div class="slider-line"></div>
-        <div class="slider-handle">
-          <div class="handle-arrows">
-            <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M5 3L1 7l4 4" stroke="#0A0A0A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M9 3l4 4-4 4" stroke="#0A0A0A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-        </div>
+        <div class="slider-handle"><div class="handle-arrows"><svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M5 3L1 7l4 4" stroke="#0A0A0A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M9 3l4 4-4 4" stroke="#0A0A0A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
         <div class="sl-badge before">Before</div>
         <div class="sl-badge after">After</div>
         <div class="drag-hint">Drag to compare</div>
@@ -257,18 +187,12 @@ footer { margin-top: 40px; padding: 20px 36px; border-top: 0.5px solid var(--rul
       <div class="ba-caption">Living Room · Venice Modern</div>
     </div>
 
-    <!-- MODULE 2 -->
     <div class="ba-module">
       <div class="slider-wrap pair-2" data-slider>
-        <div class="slider-before"><div class="sl-ph"></div></div>
-        <div class="slider-after"><div class="sl-ph"></div></div>
+        <div class="slider-before"></div>
+        <div class="slider-after"></div>
         <div class="slider-line"></div>
-        <div class="slider-handle">
-          <div class="handle-arrows">
-            <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M5 3L1 7l4 4" stroke="#0A0A0A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M9 3l4 4-4 4" stroke="#0A0A0A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-        </div>
+        <div class="slider-handle"><div class="handle-arrows"><svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M5 3L1 7l4 4" stroke="#0A0A0A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M9 3l4 4-4 4" stroke="#0A0A0A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
         <div class="sl-badge before">Before</div>
         <div class="sl-badge after">After</div>
         <div class="drag-hint">Drag to compare</div>
@@ -276,18 +200,12 @@ footer { margin-top: 40px; padding: 20px 36px; border-top: 0.5px solid var(--rul
       <div class="ba-caption">Master Bedroom · Bel Air</div>
     </div>
 
-    <!-- MODULE 3 -->
     <div class="ba-module">
       <div class="slider-wrap pair-3" data-slider>
-        <div class="slider-before"><div class="sl-ph"></div></div>
-        <div class="slider-after"><div class="sl-ph"></div></div>
+        <div class="slider-before"></div>
+        <div class="slider-after"></div>
         <div class="slider-line"></div>
-        <div class="slider-handle">
-          <div class="handle-arrows">
-            <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M5 3L1 7l4 4" stroke="#0A0A0A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M9 3l4 4-4 4" stroke="#0A0A0A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </div>
-        </div>
+        <div class="slider-handle"><div class="handle-arrows"><svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M5 3L1 7l4 4" stroke="#0A0A0A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg><svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M9 3l4 4-4 4" stroke="#0A0A0A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
         <div class="sl-badge before">Before</div>
         <div class="sl-badge after">After</div>
         <div class="drag-hint">Drag to compare</div>
