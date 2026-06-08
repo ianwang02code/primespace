@@ -50,19 +50,17 @@ nav {
 .g-extra { display: none; grid-column: span 4; height: 180px; }
 .g-extra.col6 { grid-column: span 6; }
 .gallery.expanded .g-extra { display: block; }
-.g-ph { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; transition: transform 0.5s cubic-bezier(0.25,0,0,1); }
+.g-ph { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; transition: transform 0.5s cubic-bezier(0.25,0,0,1); background-size: cover; background-position: center; }
 .g-item:hover .g-ph { transform: scale(1.05); }
-.g-item:nth-child(1) .g-ph { background: #141414; }
-.g-item:nth-child(2) .g-ph { background: #0F1218; }
-.g-item:nth-child(3) .g-ph { background: #121210; }
-.g-item:nth-child(4) .g-ph { background: #0E1210; }
-.g-item:nth-child(5) .g-ph { background: #141210; }
-.g-item:nth-child(6) .g-ph { background: #0E1418; }
-.g-item:nth-child(7) .g-ph { background: #121816; }
 
-/* Replace placeholder backgrounds with your photos like this:
-   .g-item:nth-child(1) .g-ph { background: url('photos/living-room.jpg') center/cover; }
-*/
+/* ── REPLACE THESE WITH YOUR PORTFOLIO PHOTOS ── */
+.g-item:nth-child(1) .g-ph { background-color: #141414; /* background-image: url('photos/portfolio/photo1.jpg'); */ }
+.g-item:nth-child(2) .g-ph { background-color: #0F1218; /* background-image: url('photos/portfolio/photo2.jpg'); */ }
+.g-item:nth-child(3) .g-ph { background-color: #121210; /* background-image: url('photos/portfolio/photo3.jpg'); */ }
+.g-item:nth-child(4) .g-ph { background-color: #0E1210; /* background-image: url('photos/portfolio/photo4.jpg'); */ }
+.g-item:nth-child(5) .g-ph { background-color: #141210; /* background-image: url('photos/portfolio/photo5.jpg'); */ }
+.g-item:nth-child(6) .g-ph { background-color: #0E1418; /* background-image: url('photos/portfolio/photo6.jpg'); */ }
+.g-item:nth-child(7) .g-ph { background-color: #121816; /* background-image: url('photos/portfolio/photo7.jpg'); */ }
 
 .ph-svg { opacity: 0.1; color: #F0EEE9; }
 .more-row { display: flex; align-items: center; gap: 20px; padding: 18px 0 48px; }
@@ -72,7 +70,7 @@ nav {
 .more-btn svg { transition: transform 0.3s; }
 .more-btn.open svg { transform: rotate(180deg); }
 
-/* BEFORE / AFTER */
+/* BEFORE / AFTER SLIDER */
 .ba-section { border-top: 0.5px solid var(--rule); }
 .ba-pairs { padding: 0 36px 24px; display: flex; flex-direction: column; gap: 24px; }
 
@@ -80,21 +78,25 @@ nav {
   position: relative; width: 100%; height: 300px;
   overflow: hidden; cursor: col-resize; user-select: none; background: var(--bg3);
 }
-.slider-before, .slider-after { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+.slider-before, .slider-after { position: absolute; inset: 0; }
 .slider-after { clip-path: inset(0 50% 0 0); }
-.sl-ph { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+.sl-ph { width: 100%; height: 100%; background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; }
 
-/* Replace placeholder backgrounds with your photos like this:
-   .pair-1 .slider-before .sl-ph { background: url('photos/lr-before.jpg') center/cover; }
-   .pair-1 .slider-after  .sl-ph { background: url('photos/lr-after.jpg')  center/cover; }
+/* ── REPLACE THESE WITH YOUR STAGING PHOTOS ── */
+.pair-1 .slider-before .sl-ph {
+  background-color: #201C18;
+  background-image: url('photos/before%201.png');
+}
+.pair-1 .slider-after .sl-ph {
+  background-color: #141C24;
+  background-image: url('photos/after%201.png');
+}
+/* Add more pairs below as needed:
+.pair-2 .slider-before .sl-ph { background-image: url('photos/before2.jpg'); }
+.pair-2 .slider-after  .sl-ph { background-image: url('photos/after2.jpg');  }
 */
-.pair-1 .slider-before .sl-ph { background: linear-gradient(135deg, #201C18 0%, #2A2420 100%); }
-.pair-1 .slider-after  .sl-ph { background: linear-gradient(135deg, #141C24 0%, #1C2830 100%); }
-.pair-2 .slider-before .sl-ph { background: linear-gradient(135deg, #1C1814 0%, #262018 100%); }
-.pair-2 .slider-after  .sl-ph { background: linear-gradient(135deg, #121A14 0%, #1A2820 100%); }
-
-.after-svg  { opacity: 0.14; color: #F0EEE9; }
-.before-svg { opacity: 0.08; color: #F0EEE9; }
+.pair-2 .slider-before .sl-ph { background-color: #1C1814; }
+.pair-2 .slider-after  .sl-ph { background-color: #121A14; }
 
 .slider-line {
   position: absolute; top: 0; bottom: 0; left: 50%;
@@ -134,7 +136,7 @@ nav {
 .cta-left h3 { font-family: var(--display); font-size: 40px; letter-spacing: 0.04em; line-height: 1; margin-bottom: 6px; }
 .cta-left h3 span { color: var(--accent); }
 .cta-left p { font-size: 12px; color: var(--muted); }
-.cta-btn { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--bg); background: var(--accent); border: none; padding: 14px 28px; cursor: pointer; font-weight: 500; white-space: nowrap; flex-shrink: 0; font-family: var(--body); transition: opacity 0.2s; }
+.cta-btn { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--bg); background: var(--accent); border: none; padding: 14px 28px; cursor: pointer; font-weight: 500; white-space: nowrap; flex-shrink: 0; font-family: var(--body); transition: opacity 0.2s; text-decoration: none; display: inline-block; }
 .cta-btn:hover { opacity: 0.85; }
 
 footer { margin-top: 40px; padding: 20px 36px; border-top: 0.5px solid var(--rule); display: flex; justify-content: space-between; align-items: center; }
@@ -148,9 +150,8 @@ footer { margin-top: 40px; padding: 20px 36px; border-top: 0.5px solid var(--rul
 <nav>
   <div class="logo">PRIMESPACE<span>.</span></div>
   <ul class="nav-links">
-    <li><a href="#">Portfolio</a></li>
-    <li><a href="#">Staging</a></li>
-    <li><a href="#">About</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#staging">Staging</a></li>
     <li><a class="nav-book" href="mailto:hello@primespacemedia.com">Book Now</a></li>
   </ul>
 </nav>
@@ -163,7 +164,7 @@ footer { margin-top: 40px; padding: 20px 36px; border-top: 0.5px solid var(--rul
   </div>
 </div>
 
-<div class="sec-head">
+<div class="sec-head" id="portfolio">
   <h2>PORTFOLIO</h2>
   <span class="sec-num">01 / Photography</span>
 </div>
@@ -188,7 +189,7 @@ footer { margin-top: 40px; padding: 20px 36px; border-top: 0.5px solid var(--rul
   </div>
 </div>
 
-<div class="ba-section">
+<div class="ba-section" id="staging">
   <div class="sec-head">
     <h2>VIRTUAL STAGING</h2>
     <span class="sec-num">02 / Before & After</span>
@@ -197,16 +198,8 @@ footer { margin-top: 40px; padding: 20px 36px; border-top: 0.5px solid var(--rul
   <div class="ba-pairs">
     <div>
       <div class="slider-wrap pair-1" id="sl1">
-        <div class="slider-before">
-          <div class="sl-ph">
-            <svg width="60" height="60" viewBox="0 0 60 60" fill="none" class="before-svg"><rect x="4" y="4" width="52" height="52" rx="2" stroke="currentColor" stroke-width="1"/><line x1="4" y1="44" x2="56" y2="24" stroke="currentColor" stroke-width="0.8" opacity="0.5"/><line x1="4" y1="54" x2="56" y2="34" stroke="currentColor" stroke-width="0.8" opacity="0.3"/></svg>
-          </div>
-        </div>
-        <div class="slider-after" id="sl1-after">
-          <div class="sl-ph">
-            <svg width="60" height="60" viewBox="0 0 60 60" fill="none" class="after-svg"><rect x="4" y="4" width="52" height="52" rx="2" stroke="currentColor" stroke-width="1"/><rect x="8" y="38" width="18" height="10" rx="1" stroke="currentColor" stroke-width="1"/><rect x="30" y="35" width="24" height="13" rx="1" stroke="currentColor" stroke-width="1"/><line x1="14" y1="28" x2="14" y2="38" stroke="currentColor" stroke-width="1"/><circle cx="14" cy="24" r="4" stroke="currentColor" stroke-width="1"/><rect x="20" y="20" width="16" height="14" rx="1" stroke="currentColor" stroke-width="1"/></svg>
-          </div>
-        </div>
+        <div class="slider-before"><div class="sl-ph"></div></div>
+        <div class="slider-after" id="sl1-after"><div class="sl-ph"></div></div>
         <div class="slider-line" id="sl1-line"></div>
         <div class="slider-handle" id="sl1-handle">
           <div class="handle-arrows">
@@ -218,7 +211,7 @@ footer { margin-top: 40px; padding: 20px 36px; border-top: 0.5px solid var(--rul
         <div class="sl-badge after">After</div>
         <div class="drag-hint">Drag to compare</div>
       </div>
-      <div class="slider-caption">Living Room · Venice Modern</div>
+      <div class="slider-caption">Living Room · Virtual Staging</div>
     </div>
 
     <div class="row-divider">
@@ -229,16 +222,8 @@ footer { margin-top: 40px; padding: 20px 36px; border-top: 0.5px solid var(--rul
 
     <div>
       <div class="slider-wrap pair-2" id="sl2">
-        <div class="slider-before">
-          <div class="sl-ph">
-            <svg width="60" height="60" viewBox="0 0 60 60" fill="none" class="before-svg"><rect x="4" y="4" width="52" height="52" rx="2" stroke="currentColor" stroke-width="1"/><line x1="4" y1="44" x2="56" y2="24" stroke="currentColor" stroke-width="0.8" opacity="0.5"/></svg>
-          </div>
-        </div>
-        <div class="slider-after" id="sl2-after">
-          <div class="sl-ph">
-            <svg width="60" height="60" viewBox="0 0 60 60" fill="none" class="after-svg"><rect x="4" y="4" width="52" height="52" rx="2" stroke="currentColor" stroke-width="1"/><rect x="10" y="30" width="40" height="20" rx="2" stroke="currentColor" stroke-width="1"/><rect x="6" y="28" width="6" height="10" rx="1" stroke="currentColor" stroke-width="1"/><rect x="48" y="28" width="6" height="10" rx="1" stroke="currentColor" stroke-width="1"/></svg>
-          </div>
-        </div>
+        <div class="slider-before"><div class="sl-ph"></div></div>
+        <div class="slider-after" id="sl2-after"><div class="sl-ph"></div></div>
         <div class="slider-line" id="sl2-line"></div>
         <div class="slider-handle" id="sl2-handle">
           <div class="handle-arrows">
@@ -250,7 +235,7 @@ footer { margin-top: 40px; padding: 20px 36px; border-top: 0.5px solid var(--rul
         <div class="sl-badge after">After</div>
         <div class="drag-hint">Drag to compare</div>
       </div>
-      <div class="slider-caption">Master Bedroom · Bel Air Estate</div>
+      <div class="slider-caption">Bedroom · Virtual Staging</div>
     </div>
   </div>
 
@@ -270,23 +255,23 @@ footer { margin-top: 40px; padding: 20px 36px; border-top: 0.5px solid var(--rul
 
 <script>
 function toggleMore() {
-  const g = document.getElementById('gallery');
-  const btn = document.getElementById('moreBtn');
-  const open = g.classList.toggle('expanded');
+  var g = document.getElementById('gallery');
+  var btn = document.getElementById('moreBtn');
+  var open = g.classList.toggle('expanded');
   btn.classList.toggle('open', open);
   btn.childNodes[0].textContent = open ? 'Show Less ' : 'More Work ';
 }
 
 function initSlider(wrapId, afterId, lineId, handleId) {
-  const wrap = document.getElementById(wrapId);
-  const after = document.getElementById(afterId);
-  const line = document.getElementById(lineId);
-  const handle = document.getElementById(handleId);
-  let dragging = false;
+  var wrap = document.getElementById(wrapId);
+  var after = document.getElementById(afterId);
+  var line = document.getElementById(lineId);
+  var handle = document.getElementById(handleId);
+  var dragging = false;
 
   function setPos(x) {
-    const rect = wrap.getBoundingClientRect();
-    let pct = (x - rect.left) / rect.width;
+    var rect = wrap.getBoundingClientRect();
+    var pct = (x - rect.left) / rect.width;
     pct = Math.max(0.02, Math.min(0.98, pct));
     after.style.clipPath = 'inset(0 ' + ((1 - pct) * 100).toFixed(2) + '% 0 0)';
     line.style.left = (pct * 100).toFixed(2) + '%';
